@@ -213,6 +213,14 @@ on post-fs-data
     # Create directory used by the DASH client
     mkdir /data/misc/dash 0770 media audio
 
+    # Display
+    chown system graphics /sys/class/graphics/fb0/dynamic_fps
+    chmod 0664 /sys/class/graphics/fb0/dynamic_fps
+    chown system graphics /sys/class/graphics/fb0/idle_notify
+    chmod 0664 /sys/class/graphics/fb0/idle_notify
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+
     # Create directory used by display clients
     mkdir /data/misc/display 0770 system graphics
 
