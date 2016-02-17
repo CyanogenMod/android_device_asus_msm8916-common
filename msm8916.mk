@@ -164,6 +164,7 @@ PRODUCT_PACKAGES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
+    hardware_properties.msm8916 \
     power.msm8916
 
 # Ramdisk
