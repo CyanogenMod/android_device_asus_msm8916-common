@@ -118,6 +118,12 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     params.set("longshot-supported", "false");
 
+    const char *manualFocusPosition = params.get("manual-focus-position");
+    if (manualFocusPosition != NULL) {
+        params.set("cur-focus-scale", manualFocusPosition);
+        params.set("cur-focus-diopter", manualFocusPosition);
+    }
+
 #if !LOG_NDEBUG
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
