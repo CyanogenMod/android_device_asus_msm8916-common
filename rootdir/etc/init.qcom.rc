@@ -64,10 +64,6 @@ on post-fs-data
     mkdir /data/misc/camera 0770 camera camera
 
     # Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0770 root system
-    chmod 2770 /data/misc/perfd
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
@@ -850,8 +846,8 @@ service qseecomd /system/bin/qseecomd
 service perfd /vendor/bin/perfd
     class main
     user root
-    group root
     disabled
+    socket perfd seqpacket 0666 root system
 
 service thermal-engine /vendor/bin/thermal-engine
     class main
