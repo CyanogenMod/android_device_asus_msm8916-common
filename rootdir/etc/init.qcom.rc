@@ -939,6 +939,10 @@ service spk_calibration /system/bin/tfamode 0
     oneshot
     disabled
 
+service sensorscal /system/bin/sensorscal
+    user system
+    oneshot
+
 on property:service.bootanim.exit=0
     start spk_calibration
 
