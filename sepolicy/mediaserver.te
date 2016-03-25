@@ -4,6 +4,7 @@ binder_call(mediaserver, sensorservice_service);
 
 allow mediaserver mm-qcamerad:unix_stream_socket connectto;
 
+allow mediaserver audio_prop:property_service set;
 allow mediaserver camera_prop:property_service set;
 
 allow mediaserver persist_file:dir search;
