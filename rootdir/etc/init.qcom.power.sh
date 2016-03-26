@@ -73,6 +73,8 @@ case "$soc_id" in
 
         # HMP Task packing settings for 8939, 8929
         echo 20 > /proc/sys/kernel/sched_small_task
+        echo 30 > /proc/sys/kernel/sched_mostly_idle_load
+        echo 3 > /proc/sys/kernel/sched_mostly_idle_nr_run
 
         for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
         do
@@ -139,26 +141,6 @@ case "$soc_id" in
         # HMP scheduler (big.Little cluster related) settings
         echo 75 > /proc/sys/kernel/sched_upmigrate
         echo 60 > /proc/sys/kernel/sched_downmigrate
-
-        # CPU idle load threshold
-        echo 30 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
-        echo 30 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
-
-        # CPU idle nr run threshold
-        echo 3 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_nr_run
-        echo 3 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_nr_run
     ;;
 esac
 
