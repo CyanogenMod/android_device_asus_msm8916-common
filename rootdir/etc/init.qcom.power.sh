@@ -107,6 +107,9 @@ case "$soc_id" in
         # Disable thermal core_control to update interactive gov settings
         echo 0 > /sys/module/msm_thermal/core_control/enabled
 
+        # Disable cluster plug to update interactive gov settings
+        echo 0 > /sys/module/cluster_plug/parameters/cluster_plug_active
+
         # Enable governor for perf cluster
         echo 1 > /sys/devices/system/cpu/cpu0/online
         echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -133,6 +136,9 @@ case "$soc_id" in
 
         # Enable thermal core_control now
         echo 1 > /sys/module/msm_thermal/core_control/enabled
+
+        # Enable cluster plug now
+        echo 1 > /sys/module/cluster_plug/parameters/cluster_plug_active
 
         # Bring up all cores online
         echo 1 > /sys/devices/system/cpu/cpu1/online
