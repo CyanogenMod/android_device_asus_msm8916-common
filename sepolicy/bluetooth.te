@@ -1,0 +1,2 @@
+allow bluetooth fac_file:dir search;
+allow bluetooth fac_file:file rw_file_perms;
