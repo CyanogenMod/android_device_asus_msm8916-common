@@ -137,8 +137,9 @@ case "$soc_id" in
         # Enable thermal core_control now
         echo 1 > /sys/module/msm_thermal/core_control/enabled
 
-        # Enable cluster plug now
+        # Enable cluster plug now and allow powerhal to control it
         echo 1 > /sys/module/cluster_plug/parameters/cluster_plug_active
+        chown system.system /sys/module/cluster_plug/parameters/interactive
 
         # Bring up all cores online
         echo 1 > /sys/devices/system/cpu/cpu1/online
