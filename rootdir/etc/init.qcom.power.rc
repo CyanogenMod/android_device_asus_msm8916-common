@@ -1,3 +1,6 @@
+on boot
+    chown system system /sys/module/cluster_plug/parameters/interactive
+
 on enable-low-power
     exec u:r:qti_init_shell:s0 -- /init.qcom.power.sh
 
