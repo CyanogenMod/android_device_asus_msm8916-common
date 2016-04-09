@@ -3,7 +3,7 @@ on boot
     chown system system /sys/module/cluster_plug/parameters/low_power_mode
 
 on enable-low-power
-    exec u:r:qti_init_shell:s0 -- /init.qcom.power.sh
+    exec u:r:qti_init_shell:s0 -- /system/etc/init.qcom.power.sh
 
     rm /data/misc/perfd/default_values
     rm /data/system/perfd/default_values
