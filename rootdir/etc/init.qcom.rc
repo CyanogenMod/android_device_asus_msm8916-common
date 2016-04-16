@@ -42,7 +42,7 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
-    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8916.so|libshim_camera.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so"
+    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8916.so|libshim_camera.so:/system/vendor/lib/libmmqjpeg_codec.so|libboringssl-compat.so:/system/bin/vm_bms|libshim_vm_bms_log.so"
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
