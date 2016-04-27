@@ -307,6 +307,10 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libSHIMDivxDrm.so
 
+# Network
+vendor/lib64/libconnctrl.so
+vendor/lib/libconnctrl.so
+
 # Perf
 bin/perfd:vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
@@ -365,7 +369,6 @@ vendor/lib/libsmemlog.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/netmgrd
 bin/qmuxd
-bin/radish
 bin/rfs_access
 bin/rmt_storage
 etc/permissions/qcnvitems.xml
