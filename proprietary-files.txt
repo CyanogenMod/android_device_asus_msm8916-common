@@ -307,6 +307,10 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libSHIMDivxDrm.so
 
+# Network
+vendor/lib64/libconnctrl.so
+vendor/lib/libconnctrl.so
+
 # Perf
 bin/perfd:vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
