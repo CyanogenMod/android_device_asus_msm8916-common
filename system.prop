@@ -6,6 +6,7 @@ ro.sys.fw.dex2oat_thread_count=4
 audio.offload.buffer.size.kb=64
 audio.offload.gapless.enabled=true
 audio.offload.min.duration.secs=30
+audio.offload.video=true
 av.offload.enable=true
 av.streaming.offload.enable=true
 persist.audio.fluence.speaker=true
