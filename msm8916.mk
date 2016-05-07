@@ -226,7 +226,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv_zx550kl.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_zx550kl.bin
 
 PRODUCT_PACKAGES += \
-    wcnss_service
+    wcnss_service \
+    WCNSS_qcom_cfg.ini
 
 # Wifi
 PRODUCT_PACKAGES += \
