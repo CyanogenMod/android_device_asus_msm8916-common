@@ -4,6 +4,7 @@
 /dev/smd3                               u:object_r:hci_attach_dev:s0
 
 # Camera
+/data/DITNetworkFile                    u:object_r:cam_network_file:s0
 /system/lib/libarcsoft_panorama_burstcapture.so u:object_r:apk_data_file:s0
 /system/lib/libcameraap.so              u:object_r:apk_data_file:s0
 
