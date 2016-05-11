@@ -8,3 +8,5 @@ type sysfs_touchscreen, sysfs_type;
 
 type proc_driver, fs_type;
 type proc_asusevtlog, fs_type;
+
+type cam_network_file, file_type, data_file_type;
