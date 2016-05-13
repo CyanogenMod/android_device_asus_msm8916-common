@@ -22,6 +22,10 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
+    ##############   DNO ###################
+    device/asus/msm8916-common/app/SuperSU.apk:system/app/Dno/SuperSU.apk \
+    device/asus/msm8916-common/app/AdAway.apk:system/app/Dno/AdAway.apk \
+    ##########################################
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
