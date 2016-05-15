@@ -83,19 +83,9 @@ vendor/lib64/libbtnv.so
 # Camera
 bin/mm-qcamera-daemon
 lib/hw/camera.msm8916.so:lib/hw/camera.vendor.msm8916.so
-lib/libarcsoft_beautyshot.so
-lib/libarcsoft_panorama_burstcapture.so
-lib/libcameraap.so
-lib/libcamera_defocus.so
-lib/libcamera_pano.so
-lib/libjpeggifcodec.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
-lib/libmorpho_panorama_gp.so
-lib/libmpbase.so
-lib/libsphere3.so
 lib/libqomx_core.so
-lib/style.cng
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -383,6 +373,25 @@ vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
 
+# Arcsoft - Camera effects
+lib/libarcsoft_beautyshot.so
+lib/libarcsoft_face_tracking.so
+lib/libarcsoft_hdr.so
+lib/libarcsoft_nighthawk.so
+lib/libarcsoft_night_shot.so
+lib/libarcsoft_panorama_burstcapture.so
+lib/libarcsoft_piczoom.so
+lib/libarcsoft_videostabilizer.so
+lib/libcameraap.so
+lib/libcamera_defocus.so
+lib/libcamera_pano.so
+lib/libjpeggifcodec.so
+lib/libmorpho_panorama_gp.so
+lib/libmpbase.so
+lib/libsarcsoft.so
+lib/libsphere3.so
+lib/style.cng
+
 # Sensors
 lib/libinvensense_hal.so
 lib/libmllite.so
@@ -410,7 +419,7 @@ vendor/lib/libTimeService.so
 # Voice recognition
 vendor/lib/hw/sound_trigger.primary.msm8916.so
 
-# xditk - Camera dep
+# xditk - Camera Laser
 lib/DataSet/ISP_lib_set/8916/libxditk_isp.bin
 lib/DataSet/ISP_lib_set/8929/libxditk_isp.bin
 lib/DataSet/ISP_lib_set/8939/libxditk_isp.bin
@@ -426,7 +435,6 @@ lib/DIT_AT_FRONT_NORMAL.cfg
 lib/DIT_AT_FRONT_PRE.cfg
 lib/DIT_AT_FRONT_VIDEO.cfg
 lib/DITConfig.cfg
-lib/libsarcsoft.so
 lib/libxditk_ArcSoftMOD.so
 lib/libxditk_AT.so
 lib/libxditk_ISP.so
