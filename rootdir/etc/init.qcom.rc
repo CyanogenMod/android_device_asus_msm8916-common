@@ -30,8 +30,6 @@ import init.qcom.usb.rc
 import init.target.rc
 
 on early-init
-    symlink /data/tombstones /tombstones
-
     # Turn off backlight on blank
     write /sys/class/leds/lcd-backlight/trigger "backlight"
 
@@ -60,22 +58,8 @@ on post-fs
 
 # msm specific files that need to be created on /data
 on post-fs-data
-    mkdir /data/fdAlbum 0770 camera camera
+    # Create Camera sockets
     mkdir /data/misc/camera 0770 camera camera
-
-    # Create PERFD deamon related dirs
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-    mkdir /tombstones/wcnss 0771 system system
-    mkdir /tombstones/dsps 0771 system system
-
-    mkdir /persist/data/sfs 0700 system system
-    mkdir /persist/data/tz 0700 system system
-
-    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -86,18 +70,13 @@ on post-fs-data
 
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
-    mkdir /data/connectivity/nsrm 0771 system system
 
-    #Create the directories used by DPM subsystem
+    # Create the directories used by DPM subsystem
     mkdir /data/dpm 0771 system system
-    mkdir /data/dpm/fdMgr 0771 system system
     mkdir /data/dpm/nsrm 0771 system system
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
-
-    # Create directory used by the DASH client
-    mkdir /data/misc/dash 0770 media audio
 
     # Mounting of persist and factory is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod them again so because mount is run as root + defaults
@@ -118,10 +97,6 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    # Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
-    mkdir /data/system 0775 system system
-    #symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
-
     # Create directories for Location services
     mkdir /data/misc/location 0770 gps gps
     mkdir /data/misc/location/mq 0770 gps gps
@@ -130,35 +105,29 @@ on post-fs-data
     mkdir /data/misc/location/quipc 0770 gps system
     mkdir /data/misc/location/gsiff 0770 gps gps
 
-    # Create directory from IMS services
-    mkdir /data/shared 0755
-    chown system system /data/shared
-
     # Create directory for FOTA
-    mkdir /data/fota 0771
-    chown system system /data/fota
-
-    # Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
+    mkdir /data/fota 0771 system system
 
     # Create /data/time folder for time-services
     mkdir /data/time 0700 system system
 
-    mkdir /data/audio 0770 media audio
-
     setprop vold.post_fs_data_done 1
-
-    # Create a folder for SRS to be able to create a usercfg file
-    mkdir /data/data/media 0770 media media
-
-    mkdir /data/diag_logs 0777 system system
 
     # Create folder for mm-qcamera-daemon
     mkdir /data/camera 0770 media camera
 
-    # Create directory used by display clients
-    mkdir /data/misc/display 0770 system graphics
+    # Create PERFD deamon related dirs
+    mkdir /data/system/perfd 2770 root system
+    chmod 2770 /data/system/perfd
+
+    # Create /persist folders
+    mkdir /persist/data 0700 system system
+    mkdir /persist/data/sfs 0700 system system
+    mkdir /persist/data/tz 0700 system system
+    mkdir /persist/drm 0770 system system
+    mkdir /persist/misc 0770 system system
     mkdir /persist/display 0770 system graphics
+    mkdir /persist/sensors 0770 system system
 
     # Remove cached stackIDs as they cause sims to be swapped after second boot
     rm /data/property/persist.radio.msim.stackid_0
@@ -199,6 +168,9 @@ on boot
 
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
+
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/device/extldo
+    chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
 
     # Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
