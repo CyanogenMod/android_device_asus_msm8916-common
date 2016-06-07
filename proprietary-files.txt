@@ -353,7 +353,6 @@ etc/firmware/a420_pfp.fw
 etc/firmware/a420_pm4.fw
 
 # Media
-vendor/lib/libDivxDrm.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
 vendor/lib/libmm-color-convertor.so
@@ -470,9 +469,6 @@ vendor/lib/libTimeService.so
 vendor/lib/hw/sound_trigger.primary.msm8916.so
 
 # xditk - Camera dep
-lib/DataSet/ISP_lib_set/8916/libxditk_isp.bin
-lib/DataSet/ISP_lib_set/8929/libxditk_isp.bin
-lib/DataSet/ISP_lib_set/8939/libxditk_isp.bin
 lib/DataSet/ispDB/ParameterDB.db
 lib/DataSet/ditSCidGen/msgchk.db
 lib/DIT_AT_BACK_HL.cfg
