@@ -48,6 +48,9 @@ persist.hwc.mdpcomp.enable=true
 # DRM
 drm.service.enabled=true
 
+# FRP
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+
 # GPS
 persist.gps.qc_nlp_in_use=1
 ro.gps.agps_provider=1
