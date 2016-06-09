@@ -218,5 +218,5 @@
 /dev/ramdump*             0640   system     system
 /dev/i2c-6                0660   media      media
 
-/dev/block/bootdevice/by-name/persistent    0660   system     system
-
+# FRP
+/dev/block/bootdevice/by-name/config    0660   system     system
