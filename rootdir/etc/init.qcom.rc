@@ -35,6 +35,10 @@ on early-init
     # Turn off backlight on blank
     write /sys/class/leds/lcd-backlight/trigger "backlight"
 
+    # Disable ASDF
+    write /proc/asusdebug-switch off
+    write /proc/asusevtlog-switch off
+
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
