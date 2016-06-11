@@ -920,6 +920,7 @@ service qcom-factory /system/bin/sh /system/etc/init.qcom.factory.sh
 
 on property:sys.boot_completed=1
     write /proc/boot_completed_prop 1
+    write /proc/asusdebug "get_asdf_log"
 
 on load_system_props_action
     start qcom-opengles
