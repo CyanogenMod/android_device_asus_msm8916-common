@@ -261,7 +261,7 @@ on boot
 
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
-    write /proc/sys/kernel/printk "6 6 1 7"
+    write /proc/sys/kernel/printk "8 6 1 7"
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
@@ -644,6 +644,10 @@ on boot
     chown system system /dev/iio:device1
     chmod 774 /dev/iio:device1
 
+    # Disable/Enable UART
+    wait /proc/driver/audio_debug
+    write /proc/driver/audio_debug ${sys.uart.enable}
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
@@ -920,6 +924,9 @@ service qcom-factory /system/bin/sh /system/etc/init.qcom.factory.sh
 
 on property:sys.boot_completed=1
     write /proc/boot_completed_prop 1
+
+on property:sys.uart.enable=*
+    write /proc/driver/audio_debug ${sys.uart.enable}
 
 on load_system_props_action
     start qcom-opengles
