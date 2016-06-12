@@ -921,5 +921,11 @@ service qcom-factory /system/bin/sh /system/etc/init.qcom.factory.sh
 on property:sys.boot_completed=1
     write /proc/boot_completed_prop 1
 
+on property:sys.uart.enable=0
+    write /proc/driver/audio_debug 0
+
+on property:sys.uart.enable=1
+    write /proc/driver/audio_debug 1
+
 on load_system_props_action
     start qcom-opengles
