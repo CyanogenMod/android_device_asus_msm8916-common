@@ -23,7 +23,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.cyanogenmod.settings.device.utils.FileUtils;
+import org.cyanogenmod.internal.util.FileUtils;
 
 import java.lang.Integer;
 

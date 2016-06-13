@@ -27,7 +27,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.cyanogenmod.settings.device.utils.FileUtils;
+import org.cyanogenmod.internal.util.FileUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     static final String TAG = "CMActions";
