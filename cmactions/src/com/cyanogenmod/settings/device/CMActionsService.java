@@ -19,24 +19,17 @@ package com.cyanogenmod.settings.device;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Settings;
 import android.util.Log;
-
-import java.util.List;
-import java.util.LinkedList;
-
 
 public class CMActionsService extends IntentService {
     private static final String TAG = "CMActions";
     private final Context mContext;
 
-
-
     public CMActionsService(Context context) {
         super("CMActionService");
         mContext = context;
         Log.d(TAG, "Starting");
-        CMActionsSettings cmActionsSettings = new CMActionsSettings(context );
+        CMActionsSettings cmActionsSettings = new CMActionsSettings(context);
     }
 
     @Override
