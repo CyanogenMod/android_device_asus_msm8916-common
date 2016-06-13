@@ -1,3 +1,14 @@
+on boot
+    chown system system /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
+    chown system system /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+    chown system system /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
+    chown system system /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+    chmod 644 /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
+    chmod 644 /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+    chmod 644 /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
+    chmod 644 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+
+
 on enable-low-power
     insmod /system/lib/modules/msm_core_ctl.ko
 
