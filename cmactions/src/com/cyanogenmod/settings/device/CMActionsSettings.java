@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.settings.device;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
