@@ -1,7 +1,3 @@
-on boot
-    # Allow the powerhal to control cluster plug
-    chown system system /sys/module/cluster_plug/parameters/low_power_mode
-
 on enable-low-power
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
     write /sys/module/process_reclaim/parameters/pressure_min 10
