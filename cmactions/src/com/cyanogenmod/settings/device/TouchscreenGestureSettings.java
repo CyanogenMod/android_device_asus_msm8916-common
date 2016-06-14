@@ -94,6 +94,11 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        // If running on a phone, remove padding around the listview
+        if (!ScreenType.isTablet(this)) {
+            getListView().setPadding(0, 0, 0, 0);
+        }
+
         mContext = getApplicationContext();
     }
 
