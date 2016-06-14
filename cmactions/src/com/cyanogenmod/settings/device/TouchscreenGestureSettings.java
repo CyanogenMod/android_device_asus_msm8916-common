@@ -27,6 +27,7 @@ import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import cyanogenmod.providers.CMSettings;
 
@@ -93,6 +94,8 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        ((ViewGroup)getListView().getParent()).setPadding(0, 0, 0, 0);
 
         mContext = getApplicationContext();
     }
