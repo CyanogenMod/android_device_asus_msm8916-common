@@ -116,7 +116,6 @@ PRODUCT_PACKAGES += \
     flp.conf \
     gps.conf \
     izat.conf \
-    quipc.conf \
     sap.conf
 
 # IRSC
