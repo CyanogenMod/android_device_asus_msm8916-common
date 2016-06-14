@@ -30,7 +30,7 @@ import android.hardware.SensorManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
-import android.media.session.MediaSessionLegacyHelper;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
@@ -305,10 +305,23 @@ public class KeyHandler implements DeviceKeyHandler {
         if (mVibrator == null) {
             return;
         }
+
         boolean enabled = CMSettings.System.getInt(mContext.getContentResolver(),
                 CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0;
-        if (enabled) {
-            mVibrator.vibrate(50);
+
+        AudioManager audioManager = (AudioManager) mContext.getSystemService(
+                Context.AUDIO_SERVICE);
+
+        switch (audioManager.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+            case AudioManager.RINGER_MODE_NORMAL:
+            default:
+                if (enabled) {
+                    vibrator.vibrate(50);
+                }
+                break;
         }
     }
 }
