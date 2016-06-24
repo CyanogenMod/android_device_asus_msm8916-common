@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation, nor the names of its
+ *     * Neither the name of The Linux Foundation nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -26,33 +26,25 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#ifndef __LOC_SHARED_LOCK__
-#define __LOC_SHARED_LOCK__
 
-#include <stddef.h>
-#include <pthread.h>
+#ifndef LOC_API_V02_LOG_H
+#define LOC_API_V02_LOG_H
 
-// This is a utility created for use cases such that there are more than
-// one client who need to share the same lock, but it is not predictable
-// which of these clients is to last to go away. This shared lock deletes
-// itself when the last client calls its drop() method. To add a cient,
-// this share lock's share() method has to be called, so that the obj
-// can maintain an accurate client count.
-class LocSharedLock {
-    uint32_t mRef;
-    pthread_mutex_t mMutex;
-    inline ~LocSharedLock() { pthread_mutex_destroy(&mMutex); }
-public:
-    // first client to create this LockSharedLock
-    inline LocSharedLock() : mRef(1) { pthread_mutex_init(&mMutex, NULL); }
-    // following client(s) are to *share()* this lock created by the first client
-    inline LocSharedLock* share() { mRef++; return this; }
-    // whe a client no longer needs this shared lock, drop() shall be called.
-    inline void drop() { if (0 == --mRef) delete this; }
-    // locking the lock to enter critical section
-    inline void lock() { pthread_mutex_lock(&mMutex); }
-    // unlocking the lock to leave the critical section
-    inline void unlock() { pthread_mutex_unlock(&mMutex); }
-};
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-#endif //__LOC_SHARED_LOCK__
+#include <loc_log.h>
+#include <loc_api_v02_client.h>
+
+const char* loc_get_v02_event_name(uint32_t event);
+const char* loc_get_v02_client_status_name(locClientStatusEnumType status);
+const char* loc_get_v02_qmi_status_name(qmiLocStatusEnumT_v02 status);
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* LOC_API_V02_LOG_H */
