@@ -18,6 +18,14 @@
 cp -n /factory/LaserFocus_Calibration10.txt /persist/
 cp -n /factory/LaserFocus_Calibration40.txt /persist/
 
+# Restore correct permissions on laser calibration files
+if [ ! `stat -c %a /persist/LaserFocus_Calibration10.txt` = "777" ]; then
+    chmod 777 /persist/LaserFocus_Calibration10.txt
+fi
+if [ ! `stat -c %a /persist/LaserFocus_Calibration40.txt` = "777" ]; then
+    chmod 777 /persist/LaserFocus_Calibration40.txt
+fi
+
 # Restore .bt_nv.bin file
 if [ ! -f /persist/.bt_nv.bin ]; then
     cp /factory/bt_nv.bin /persist/.bt_nv.bin
