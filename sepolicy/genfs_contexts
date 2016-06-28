@@ -1,2 +1,3 @@
 genfscon proc /driver u:object_r:proc_driver:s0
+genfscon proc /driver/LaserFocus_ u:object_r:proc_driver_laf:s0
 genfscon proc /asusevtlog u:object_r:proc_asusevtlog:s0
