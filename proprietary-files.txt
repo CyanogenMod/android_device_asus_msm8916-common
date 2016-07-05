@@ -450,7 +450,7 @@ vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
 
 # Radio - from kipper
-# Telephony extension - from oneplus3
+# Telephony extension - from AOSParadox/tomato
 -app/shutdownlistener/shutdownlistener.apk
 -app/QtiTelephonyService/QtiTelephonyService.apk
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
