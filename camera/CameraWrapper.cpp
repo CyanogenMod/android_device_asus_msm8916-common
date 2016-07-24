@@ -107,9 +107,11 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
-    params.set(android::CameraParameters::KEY_QC_LONGSHOT_SUPPORTED, "false");
+    params.remove(android::CameraParameters::KEY_QC_LONGSHOT_SUPPORTED);
+    params.remove(android::CameraParameters::KEY_QC_SUPPORTED_HDR_NEED_1X);
+    params.remove(android::CameraParameters::KEY_AUTO_WHITEBALANCE_LOCK_SUPPORTED);
+
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, "auto,hdr");
-    params.set(android::CameraParameters::KEY_AUTO_WHITEBALANCE_LOCK_SUPPORTED, "false");
 
     const char *manualFocusPosition =
             params.get(android::CameraParameters::KEY_QC_MANUAL_FOCUS_POSITION);
@@ -151,13 +153,6 @@ static char *camera_fixup_setparams(int id, const char *settings)
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
-
-    const char *sceneMode = params.get(android::CameraParameters::KEY_SCENE_MODE);
-    if (sceneMode != NULL) {
-        if (!strcmp(sceneMode, android::CameraParameters::SCENE_MODE_HDR)) {
-            params.set(android::CameraParameters::KEY_QC_SUPPORTED_HDR_NEED_1X, "false");
-        }
-    }
 
 #if !LOG_NDEBUG
     ALOGV("%s: fixed parameters:", __FUNCTION__);
