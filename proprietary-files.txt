@@ -78,6 +78,7 @@ lib/libsphere3.so
 lib/style.cng
 
 # Audio
+bin/tfamode
 lib/soundfx/libicepower.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
