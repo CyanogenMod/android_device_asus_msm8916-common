@@ -48,7 +48,7 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
 on fs
-    mount_all fstab.qcom
+    mount_all fstab.${ro.hardware} --early
 
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
@@ -57,6 +57,18 @@ on fs
     restorecon_recursive /factory
 
     start qcom-factory
+
+on late-fs
+    # Enable audio device for bootanim
+    write /sys/kernel/boot_adsp/boot 1
+
+    # Start bootanim and its dependencies
+    start servicemanager
+    start surfaceflinger
+    start audioserver
+    start bootanim
+    # mount RW partitions which need run fsck
+    mount_all fstab.${ro.hardware} --late
 
 on post-fs
     symlink /sdcard /storage/sdcard0
@@ -165,8 +177,6 @@ on early-boot
     write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
-
-    write /sys/kernel/boot_adsp/boot 1
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
