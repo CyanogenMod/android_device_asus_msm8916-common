@@ -106,6 +106,10 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     memtrack.msm8916
 
+# For android_filesystem_config.h
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
