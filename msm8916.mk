@@ -84,6 +84,10 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     Snap
 
+# Charger
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.enable_boot_charger_mode=1
+
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
