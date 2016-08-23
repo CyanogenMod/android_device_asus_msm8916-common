@@ -32,13 +32,15 @@
 #define TEMPERATURE_FILE_FORMAT       "/sys/class/thermal/thermal_zone%d/temp"
 #define CPU_ONLINE_FILE_FORMAT        "/sys/devices/system/cpu/cpu%d/online"
 
-#define BATTERY_SENSOR_NUM            23
+#define BATTERY_SENSOR_NUM            11
 #define GPU_SENSOR_NUM                13
 #define SKIN_SENSOR_NUM               18
 
-const int CPU_SENSORS[] = {8, 9, 10, 11, 14, 15, 16, 7};
+const int CPU_SENSORS_8916[] = {6, 6, 5, 5};
+const int CPU_SENSORS_8939[] = {6, 7, 8, 9, 10, 10, 10, 10};
 
-#define CPU_NUM                       (sizeof(CPU_SENSORS) / sizeof(int))
+#define CPU_NUM_8916                  (sizeof(CPU_SENSORS_8916) / sizeof(int))
+#define CPU_NUM_8939                  (sizeof(CPU_SENSORS_8939) / sizeof(int))
 #define TEMPERATURE_NUM               11
 
 //qcom, therm-reset-temp
@@ -46,16 +48,51 @@ const int CPU_SENSORS[] = {8, 9, 10, 11, 14, 15, 16, 7};
 //qcom, limit-temp
 #define CPU_THROTTLING_THRESHOLD      60
 #define BATTERY_SHUTDOWN_THRESHOLD    60
-// device/huawei/angler/thermal-engine-angler.conf
+// device/asus/msm8916-common/thermal/thermal-engine-8939-ze551kl.conf
 #define SKIN_THROTTLING_THRESHOLD     41
-#define SKIN_SHUTDOWN_THRESHOLD       64
-#define VR_THROTTLED_BELOW_MIN        47
+//#define SKIN_SHUTDOWN_THRESHOLD       64
+//#define VR_THROTTLED_BELOW_MIN        47
 
-#define GPU_LABEL                     "GPU"
+//#define GPU_LABEL                     "GPU"
 #define BATTERY_LABEL                 "battery"
-#define SKIN_LABEL                    "skin"
+//#define SKIN_LABEL                    "skin"
 
-const char *CPU_LABEL[] = {"CPU0", "CPU1", "CPU2", "CPU3", "CPU4", "CPU5", "CPU6", "CPU7"};
+const char *CPU_LABEL_8916[] = {"CPU0", "CPU1", "CPU2", "CPU3"};
+const char *CPU_LABEL_8939[] = {"CPU0", "CPU1", "CPU2", "CPU3", "CPU4", "CPU5", "CPU6", "CPU7"};
+
+#define SOC_ID_0 "/sys/devices/soc0/soc_id"
+#define SOC_ID_1 "/sys/devices/system/soc/soc0/id"
+
+/**
+ * If target is 8916:
+ *     return 1
+ * else:
+ *     return 0
+ */
+static int is_target_8916(void)
+{
+    static int is_8916 = -1;
+    int soc_id;
+    FILE *fp;
+
+    if (is_8916 >= 0)
+        return is_8916;
+
+    if (!access(SOC_ID_0, F_OK))
+        fp = fopen(SOC_ID_0, "r");
+    else
+        fp = fopen(SOC_ID_1, "r");
+
+    fscanf(fp, "%d", &soc_id);
+    pclose(fp);
+
+    if (soc_id == 206 || (soc_id >= 247 && soc_id <= 250))
+        is_8916 = 1;
+    else
+        is_8916 = 0;
+
+    return is_8916;
+}
 
 /**
  * Reads device temperature.
@@ -107,13 +144,20 @@ static ssize_t read_temperature(int sensor_num, int type, const char *name, floa
 static ssize_t get_cpu_temperatures(temperature_t *list, size_t size) {
     size_t cpu;
 
-    for (cpu = 0; cpu < CPU_NUM; cpu++) {
+    for (cpu = 0; cpu < is_target_8916 ? CPU_NUM_8916 : CPU_NUM_8939; cpu++) {
         if (cpu >= size) {
             break;
         }
-        // tsens_tz_sensor[7,8,9,10,11,14,15,6]: temperature in Celsius.
-        ssize_t result = read_temperature(CPU_SENSORS[cpu], DEVICE_TEMPERATURE_CPU, CPU_LABEL[cpu],
-                1, CPU_THROTTLING_THRESHOLD, CPU_SHUTDOWN_THRESHOLD, UNKNOWN_TEMPERATURE,
+        // tsens_tz_sensor_8916[6,6,5,5]: temperature in Celsius.
+        // tsens_tz_sensor_8939[6,7,8,9,10,10,10,10]: temperature in Celsius.
+        ssize_t result = read_temperature(
+                is_target_8916 ? CPU_SENSORS_8916[cpu] : CPU_SENSORS_8939[cpu],
+                DEVICE_TEMPERATURE_CPU,
+                is_target_8916 ? CPU_LABEL_8916[cpu] : CPU_LABEL_8939[cpu],
+                1,
+                CPU_THROTTLING_THRESHOLD,
+                CPU_SHUTDOWN_THRESHOLD,
+                UNKNOWN_TEMPERATURE,
                 &list[cpu]);
         if (result != 0) {
             return result;
@@ -136,6 +180,7 @@ static ssize_t get_temperatures(thermal_module_t *module, temperature_t *list, s
     }
     current_index += result;
 
+    /*
     // GPU temperature.
     if (current_index < size) {
         // tsens_tz_sensor12: temperature in Celsius.
@@ -147,6 +192,7 @@ static ssize_t get_temperatures(thermal_module_t *module, temperature_t *list, s
         }
         current_index++;
     }
+    */
 
     // Battery temperature.
     if (current_index < size) {
@@ -160,6 +206,7 @@ static ssize_t get_temperatures(thermal_module_t *module, temperature_t *list, s
         current_index++;
     }
 
+    /*
     // Skin temperature.
     if (current_index < size) {
         // msm_thermal: temperature in Celsius.
@@ -170,7 +217,7 @@ static ssize_t get_temperatures(thermal_module_t *module, temperature_t *list, s
             return result;
         }
         current_index++;
-    }
+    }*/
     return TEMPERATURE_NUM;
 }
 
@@ -271,7 +318,7 @@ thermal_module_t HAL_MODULE_INFO_SYM = {
         .module_api_version = THERMAL_HARDWARE_MODULE_API_VERSION_0_1,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = THERMAL_HARDWARE_MODULE_ID,
-        .name = "Angler Thermal HAL",
+        .name = "MSM8916/8939 Thermal HAL",
         .author = "The Android Open Source Project",
         .methods = &thermal_module_methods,
     },
