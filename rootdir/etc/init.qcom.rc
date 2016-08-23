@@ -619,6 +619,25 @@ on boot
     chown system system /dev/iio:device1
     chmod 774 /dev/iio:device1
 
+    # add a cpuset for the camera daemon
+    # we want all the little cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 4
+    write /dev/cpuset/camera-daemon/mems 4
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
+    # update foreground cpuset now that processors are up
+    # reserve CPU 3 for the top app and camera daemon
+    write /dev/cpuset/foreground/cpus 4-5,0-4
+    write /dev/cpuset/foreground/boost/cpus 0-4
+    write /dev/cpuset/background/cpus 4
+    write /dev/cpuset/system-background/cpus 4-5
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/camera-daemon/cpus 4-7
+
+
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start config_bluetooth
@@ -634,6 +653,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    writepid /dev/cpuset/system-background/tasks
 
 service rfs_access /system/bin/rfs_access
    class core
@@ -655,6 +675,7 @@ service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
 service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root inet
+    writepid /dev/cpuset/system-background/tasks
 
 service dpmd /system/bin/dpmd
     class main
@@ -683,9 +704,11 @@ service qmuxd /system/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps qcom_diag
+    writepid /dev/cpuset/system-background/tasks
 
 service netmgrd /system/bin/netmgrd
     class main
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -737,6 +760,7 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
+    writepid /dev/cpuset/system-background/tasks
 
 service ril-daemon1 /system/bin/rild -c 2
     class main
@@ -749,6 +773,7 @@ service charger /charger
     class charger
     group log
     seclabel u:r:healthd:s0
+    writepid /dev/cpuset/system-background/tasks
 
 service vm_bms /system/bin/vm_bms
     class main
@@ -760,6 +785,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+    writepid /dev/cpuset/camera-daemon/tasks
 
 # Allow usb charging to be disabled peristently
 on property:persist.usb.chgdisabled=1
@@ -772,22 +798,26 @@ service qseecomd /system/bin/qseecomd
     class core
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 service perfd /vendor/bin/perfd
     class main
     user root
     group root
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service thermal-engine /vendor/bin/thermal-engine
     class main
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 service time_daemon /system/bin/time_daemon
     class late_start
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 service audiod /system/bin/audiod
     class late_start
