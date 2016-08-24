@@ -8,7 +8,10 @@
 
 # Camera
 /system/lib/libarcsoft_panorama_burstcapture.so u:object_r:apk_data_file:s0
-/system/lib/libcameraap.so              u:object_r:apk_data_file:s0
+/system/lib/libcameraap.so                      u:object_r:apk_data_file:s0
+
+/system/lib/libsarcsoft.so                      u:system_data_file:s0
+/system/lib/libarcsoft_videostabilizer.so       u:system_data_file:s0
 
 # Factory
 /factory(/.*)?                          u:object_r:fac_file:s0
