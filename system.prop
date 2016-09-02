@@ -32,9 +32,6 @@ av.streaming.offload.enable=false
 # Camera
 persist.camera.cpp.duplication=false
 
-# CNE
-persist.cne.feature=1
-
 # Display
 debug.egl.hw=0
 debug.enable.sglscale=1
@@ -47,10 +44,6 @@ persist.hwc.mdpcomp.enable=true
 
 # DRM
 drm.service.enabled=true
-
-# GPS
-persist.gps.qc_nlp_in_use=1
-ro.gps.agps_provider=1
 
 # Media
 mm.enable.smoothstreaming=true
