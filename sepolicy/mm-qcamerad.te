@@ -5,3 +5,5 @@ r_dir_file(mm-qcamerad, fac_file)
 
 allow mm-qcamerad proc_driver_camera:file r_file_perms;
 allow mm-qcamerad proc_driver_laf:file r_file_perms;
+
+allow mm-qcamerad proc_apid:file r_file_perms;
