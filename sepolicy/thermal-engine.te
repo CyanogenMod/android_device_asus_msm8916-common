@@ -1,3 +1,5 @@
+# allow thermal-engine socket_device:sock_file create_sock_perms;
+
 allow thermal-engine proc_driver_battery:file r_file_perms;
 
 set_prop(thermal-engine, thermald_prop)
