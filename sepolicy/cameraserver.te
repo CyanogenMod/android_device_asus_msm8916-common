@@ -1,0 +1,13 @@
+allow cameraserver init:unix_stream_socket connectto;
+allow cameraserver mm-qcamerad:unix_stream_socket connectto;
+
+allow cameraserver camera_ditnetwork_file:file rw_file_perms
+
+allow cameraserver persist_file:file r_file_perms;
+
+allow cameraserver proc_driver_camera:file rw_file_perms;
+allow cameraserver proc_driver_laf:file rw_file_perms;
+
+allow cameraserver proc_asusevtlog:file w_file_perms;
+
+allow cameraserver proc_apid:file r_file_perms;

@@ -1,1 +1,2 @@
 r_dir_file(system_server, fac_file)
+r_dir_file(system_server, persist_file)

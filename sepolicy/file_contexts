@@ -5,7 +5,9 @@
 
 # Camera
 /system/lib/libarcsoft_panorama_burstcapture.so u:object_r:apk_data_file:s0
-/system/lib/libcameraap.so              u:object_r:apk_data_file:s0
+/system/lib/libcameraap.so                      u:object_r:apk_data_file:s0
+/system/lib/DataSet/ispDB/ParameterDB.db        u:object_r:camera_db_file:s0
+/data/DITNetworkFile                            u:object_r:camera_ditnetwork_file:s0
 
 # Factory
 /factory(/.*)?                          u:object_r:fac_file:s0
@@ -13,6 +15,9 @@
 
 # ASDF
 /asdf(/.*)?                             u:object_r:asdf_data_file:s0
+
+# Perfd
+/data/misc/perfd(/.*)?                  u:object_r:mpctl_data_file:s0
 
 # Sensors
 /dev/cm3602                             u:object_r:sensors_device:s0
