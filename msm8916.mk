@@ -202,7 +202,8 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
-    libxml2
+    libxml2 \
+    ril-wrapper
 
 # Thermal
 PRODUCT_COPY_FILES += \
