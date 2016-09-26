@@ -128,6 +128,7 @@ case "$soc_id" in
         echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
         # Enable core control and set userspace permission
+        echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
         echo 4 > /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
         echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
         echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
