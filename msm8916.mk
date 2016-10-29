@@ -91,6 +91,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bspcapability \
     camera.msm8916 \
+    libshim_camera \
     Snap
 
 # Connectivity Engine support
