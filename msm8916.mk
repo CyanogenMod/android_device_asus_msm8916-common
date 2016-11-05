@@ -106,6 +106,10 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     memtrack.msm8916
 
+# DRM
+PRODUCT_PACKAGES += \
+    libshim_wvm
+
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
