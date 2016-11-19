@@ -48,6 +48,9 @@ persist.hwc.mdpcomp.enable=true
 # DRM
 drm.service.enabled=true
 
+# Log
+log.tag.VM_BMS=SILENT
+
 # Media
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
