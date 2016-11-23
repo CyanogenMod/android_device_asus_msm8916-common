@@ -244,8 +244,8 @@ set_light_battery(__attribute__((unused)) struct light_device_t* dev,
 
     pthread_mutex_lock(&g_lock);
 
-    int level = (state->color & 0xFF000000) >> 24;
-    ALOGV("%s: color=%x level=%d", __func__, state->color, level);
+    int level = (state->color & 0xff000000) >> 24;
+    ALOGV("%s: level=%d", __func__, level);
 
     // sanity check
     if (level < 0)
@@ -259,15 +259,15 @@ set_light_battery(__attribute__((unused)) struct light_device_t* dev,
 
     if (is_lit(state)) {
         if (level <= 15) {
-            write_int(RED_LED_FILE, 255);
+            write_int(RED_LED_FILE, LED_LIGHT_ON);
             write_int(RED_PWM_FILE, 100);
         } else if (level <= 99) {
-            write_int(GREEN_LED_FILE, 255);
+            write_int(GREEN_LED_FILE, LED_LIGHT_ON);
             write_int(GREEN_PWM_FILE, 100);
-            write_int(RED_LED_FILE, 255);
+            write_int(RED_LED_FILE, LED_LIGHT_ON);
             write_int(RED_PWM_FILE, 100);
         } else {
-            write_int(GREEN_LED_FILE, 255);
+            write_int(GREEN_LED_FILE, LED_LIGHT_ON);
             write_int(GREEN_PWM_FILE, 100);
         }
     }
