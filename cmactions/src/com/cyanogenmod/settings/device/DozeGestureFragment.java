@@ -28,19 +28,17 @@ import android.view.ViewGroup;
 
 import cyanogenmod.providers.CMSettings;
 
-public class TouchscreenGestureFragment extends PreferenceFragment {
+public class DozeGestureFragment extends PreferenceFragment {
 
     private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_GESTURE_HAND_WAVE = "gesture_hand_wave";
     private static final String KEY_GESTURE_PICK_UP = "gesture_pick_up";
     private static final String KEY_GESTURE_POCKET = "gesture_pocket";
-    private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
 
     private Handler mGestureHandler = new Handler();
 
     private SwitchPreference mAmbientDisplayPreference;
     private SwitchPreference mHandwavePreference;
-    private SwitchPreference mHapticFeedback;
     private SwitchPreference mPickupPreference;
     private SwitchPreference mPocketPreference;
 
@@ -59,21 +57,6 @@ public class TouchscreenGestureFragment extends PreferenceFragment {
         mPickupPreference.setEnabled(dozeEnabled);
         mPocketPreference = (SwitchPreference) findPreference(KEY_GESTURE_POCKET);
         mPocketPreference.setEnabled(dozeEnabled);
-        mHapticFeedback = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
-        mHapticFeedback.setOnPreferenceChangeListener(mHapticPrefListener);
-
-        // Gestures
-        for (String gestureKey : CMActionsSettings.ALL_GESTURE_KEYS) {
-            Preference pref = findPreference(gestureKey);
-            pref.setOnPreferenceChangeListener(mGesturePrefListener);
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mHapticFeedback.setChecked(CMSettings.System.getInt(getContext().getContentResolver(),
-                CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1) != 0);
     }
 
     private boolean enableDoze(boolean enable) {
@@ -98,33 +81,6 @@ public class TouchscreenGestureFragment extends PreferenceFragment {
                 mPocketPreference.setEnabled(enable);
             }
             return ret;
-        }
-    };
-
-    private Preference.OnPreferenceChangeListener mHapticPrefListener =
-        new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            final boolean value = (Boolean) newValue;
-            CMSettings.System.putInt(getContext().getContentResolver(),
-                    CMSettings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, value ? 1 : 0);
-            return true;
-        }
-    };
-
-    private Preference.OnPreferenceChangeListener mGesturePrefListener =
-        new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                mGestureHandler.postDelayed(mUpdateGestures, 500);
-                return true;
-            }
-        };
-
-    private final Runnable mUpdateGestures = new Runnable() {
-        @Override
-        public void run() {
-            CMActionsSettings.updateGestureMode(getContext());
         }
     };
 }
