@@ -15,42 +15,6 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <PreferenceCategory
-        android:title="@string/gesture_display_title">
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_c"
-            android:title="@string/touchscreen_c_gesture_title"
-            android:summary="@string/touchscreen_c_gesture_summary" />
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_e"
-            android:title="@string/touchscreen_e_gesture_title"
-            android:summary="@string/touchscreen_e_gesture_summary" />
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_s"
-            android:title="@string/touchscreen_s_gesture_title"
-            android:summary="@string/touchscreen_s_gesture_summary" />
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_v"
-            android:title="@string/touchscreen_v_gesture_title"
-            android:summary="@string/touchscreen_v_gesture_summary" />
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_w"
-            android:title="@string/touchscreen_w_gesture_title"
-            android:summary="@string/touchscreen_w_gesture_summary" />
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_z"
-            android:title="@string/touchscreen_z_gesture_title"
-            android:summary="@string/touchscreen_z_gesture_summary" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory
         android:key="ambient_display_key"
         android:title="@string/ambient_display_title">
@@ -78,17 +42,6 @@
             android:defaultValue="false"
             android:title="@string/pocket_gesture_title"
             android:summary="@string/pocket_gesture_summary" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/touchscreen_gesture_extras">
-
-        <SwitchPreference
-            android:key="touchscreen_gesture_haptic_feedback"
-            android:persistent="false"
-            android:title="@string/touchscreen_gesture_haptic_feedback"
-            android:summary="@string/touchscreen_gesture_haptic_feedback_summary" />
 
     </PreferenceCategory>
 </PreferenceScreen>

@@ -21,12 +21,12 @@ import android.os.Bundle;
 
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 
-public class TouchscreenGestureActivity extends SettingsDrawerActivity {
+public class DozeGestureActivity extends SettingsDrawerActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame,
-                new TouchscreenGestureFragment()).commit();
+                new DozeGestureFragment()).commit();
     }
 }
