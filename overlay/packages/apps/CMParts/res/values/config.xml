@@ -19,7 +19,7 @@
     <!-- Default action ids for a device's touchscreen gestures
          The array should be sorted in the same order as the
          touchscreen gestures advertised by the device's CMHW impl. -->
-    <integer-array name="config_defaultTouchsceenGestureActions">
+    <integer-array name="config_defaultTouchscreenGestureActions">
         <item>1</item>
         <item>5</item>
         <item>6</item>
