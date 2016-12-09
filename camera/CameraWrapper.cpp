@@ -114,6 +114,9 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     params.set(CameraParameters::KEY_SUPPORTED_SCENE_MODES, "auto,hdr");
 
+    params.set(CameraParameters::KEY_QC_SUPPORTED_HFR_SIZES, "1920x1080,720x480");
+    params.set(CameraParameters::KEY_QC_SUPPORTED_VIDEO_HIGH_FRAME_RATE_MODES, "60,120,off");
+
     const char *manualFocusPosition =
             params.get(CameraParameters::KEY_QC_MANUAL_FOCUS_POSITION);
     const char *manualFocusPositionType =
