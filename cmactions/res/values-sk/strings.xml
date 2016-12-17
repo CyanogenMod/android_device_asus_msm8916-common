@@ -17,4 +17,26 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Gesture shortcuts -->
+  <string name="gesture_display_title">Gestá vypnutia obrazovky</string>
+  <string name="touchscreen_c_gesture_title">Fotoaparát</string>
+  <string name="touchscreen_c_gesture_summary">Gestom \"C\" spustiť fotoaparát</string>
+  <string name="touchscreen_e_gesture_title">E-mail</string>
+  <string name="touchscreen_e_gesture_summary">Gestom \"e\" spustiť e-mailovú aplikáciu</string>
+  <string name="touchscreen_s_gesture_title">Správy</string>
+  <string name="touchscreen_s_gesture_summary">Gestom \"S\" otvoriť aplikáciu pre správy</string>
+  <string name="touchscreen_v_gesture_title">Telefón</string>
+  <string name="touchscreen_v_gesture_summary">Gestom \"V\" otvoriť aplikáciu telefón</string>
+  <string name="touchscreen_w_gesture_title">Prehliadač</string>
+  <string name="touchscreen_w_gesture_summary">Gestom \"W\" otvoriť prehliadač</string>
+  <string name="touchscreen_z_gesture_title">Baterka</string>
+  <string name="touchscreen_z_gesture_summary">Gestom \"Z\" zapnúť svietidlo</string>
+  <string name="ambient_display_title">Ambientné zobrazenie</string>
+  <string name="ambient_display_enable_title">Ambientné zobrazenie</string>
+  <string name="ambient_display_enable_summary">Prebudiť obrazovku po prijatí oznámenia</string>
+  <string name="hand_wave_gesture_title">Mávnutie ruky</string>
+  <string name="hand_wave_gesture_summary">Upozorniť pulzovaním pri mávnutí rukou</string>
+  <string name="pick_up_gesture_title">Zdvihnutie</string>
+  <string name="pick_up_gesture_summary">Upozorniť pulzovaním pri zdvihnutí</string>
+  <string name="pocket_gesture_title">Vrecko</string>
+  <string name="pocket_gesture_summary">Upozorniť pulzovaním pri vybratí z vrecka</string>
 </resources>
