@@ -88,6 +88,7 @@ ril.subscription.types=NV,RUIM
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=9,9
 ro.telephony.ril_class=Asus8916RIL
+ro.telephony.ril.config=sim2gsmonly
 
 # Storage
 ro.sys.sdcardfs=true
